@@ -1,9 +1,3 @@
----
-title: 'Day 2: Dive | Advent of q 
-description: Solutions in q to Day 2 of the 2022 Advent of Code competition
-author: Stephen Taylor
-date: January 2022
----
 # Day 2: Dive
 
 ![Submarine](./img/submarine.jpg)<br>
@@ -15,7 +9,7 @@ Today’s [problem](https://adventofcode.com/2021/day/2) solution uses projectio
 
 The text file consists of course adjustments that affect horizontal position and depth.
 
-:arrow-down:
+Download:
 [`test2.txt`](./test/test2.txt)
 
 ```txt
@@ -99,7 +93,7 @@ q)prd sum {x*1,'sums y}. flip c
 
 ## Solution
 
-:arrow-down:
+Download:
 [`day2.txt`](./data/day2.txt)
 
 ```q
@@ -113,5 +107,5 @@ The table operations were a helpful way to visualize the elements of the problem
 
 
 ---
-:point-right:
+==>
 [Day 3: Binary Diagnostic](./03-binary-diagnostic.md)

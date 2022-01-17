@@ -1,9 +1,3 @@
----
-title: 'Day 1: Sonar Sweep | Advent of q
-description: Solutions in q to Day 1 of the 2022 Advent of Code competition
-author: Stephen Taylor
-date: January 2022
----
 # Day 1: Sonar Sweep
 
 
@@ -16,7 +10,7 @@ Our [first puzzle](https://adventofcode.com/2021/day/1) shows off how easily q c
 
 Every puzzle starts by ingesting a text file.
 
-:arrow-down:
+Download:
 [`test1.txt`](./test/test1.txt)
 
 ```txt
@@ -111,7 +105,7 @@ We want the 3-point moving sums of `d`, of which we ignore the first two.
 
 ## Solution
 
-:arrow-down:
+Download:
 [`day1.txt`](./test/day1.txt)
 
 ```q
@@ -130,12 +124,6 @@ sum(3_d)>-3_d
 Why does comparing `d[i]` to `d[i-3]` give the same result as comparing the moving sums?
 
 
-
-
-
-
-
-
 ---
-:point-right:
+==>
 [Day 2: Dive](./02-dive.md)
