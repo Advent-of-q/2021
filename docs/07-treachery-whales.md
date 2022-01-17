@@ -158,4 +158,6 @@ a[`$"7-2"]:min fc[fm] each rng sl[fc[fm];5;] frd
 ```
 
 ---
+
+==>
 [Day 8: Seven Segment Search](./08-seven-segment-search.md)

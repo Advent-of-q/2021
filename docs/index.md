@@ -24,7 +24,13 @@ Feel free to chime in with comments and alternatives: what follows is unlikely t
 * [Day 5: Hydrothermal Venture](./05-hydrothermal-venture.md)
 * [Day 6: Lanternfish](./06-lanternfish.md)
 * [Day 7: The Treachery of Whales](./07-treachery-whales.md)
-
+* [Day 8: Seven Segment Search](./08-seven-segment-search.md)
+* [Day 9: Smoke Basin](./09-smoke-basin.md)
+* [Day 10: Syntax Scoring](./10-syntax-scoring.md)
+* [Day 11: Dumbo Octopus](./11-dumbo-octopus.md)
+* [Day 12: Passage Pathing](./12-passage-pathing.md)
+* [Day 13: Transparent Origami](./13-transparent-origami.md)
+* [Day 14: Extended Polymerization](./14-extended-polymerization.md)
 
 ---
 ==>
