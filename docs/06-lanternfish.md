@@ -89,3 +89,6 @@ a[`$("6-1";"6-2")]:sum each @[;80 256] 256{@[1 rotate x;6;+;first 0]}\lf
 ```
 Above, rather than run the same iteration first 80 then 256 times with Over, we have run it 256 times with Scan, then selected the 80th and 256th state vectors from the result. 
 
+---
+==>
+[Day 7: The Treachery of Whales](./07-treachery-whales.md) 

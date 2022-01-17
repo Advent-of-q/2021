@@ -154,3 +154,6 @@ a[`$"7-1"]:min fc[::] each rng sl[fc[::];5;] frd
 fm:sums til 1+max frd
 a[`$"7-2"]:min fc[fm] each rng sl[fc[fm];5;] frd
 ```
+
+---
+[Day 8: Seven Segment Search](./08-seven-segment-search.md)
