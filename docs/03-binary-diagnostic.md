@@ -11,6 +11,9 @@ In today’s problem we
 Ingestion here is a treat. 
 We rely on the atomic iteration implicit in the Equal operator. 
 Comparing the file lines to `"1"` gets us a boolean matrix.
+
+Download: [`test3.txt`](./test/test3.txt)
+
 ```q
 q)show dg:"1"=read0`:test3.txt / diagnostic
 00100b
@@ -39,6 +42,8 @@ And the least-common bits are… not them.
 q)sum[dg]<count[dg]%2  / epsilon bits
 01001b
 ```
+![Zen monks](./img/lightbulb.png)
+
 >— *How many Zen monks does it take to change a lightbulb?*<br>
 >— *Two: one to change it, one not to change it.* 
 
@@ -54,6 +59,7 @@ q)prd 2 sv'1 not\sum[dg]>=count[dg]%2
 198
 ```
 The [`sv`](https://code.kx.com/q/ref/sv/) keyword is a bit of a ‘portmanteau’ function. The common theme is scalar (atom) from vector. In the domain of integers it interprets a vector as a number in the base of its left argument. 
+
 
 ## Part 2
 
@@ -75,7 +81,7 @@ We start with all the rows: `til count dg`. We want some binary function `f` so 
 ```q
 (til count dg)f/flip dg
 ```
-The function `f` we want will take as its left argument a list of row indices. Its right argument will be a bit vector – the successive columns of `dg`. Its result will be a list of row indices to be used for the next iteration. We need it to stop filtering before the last indices are gone.
+The function `f` we want will take as its left argument a list of row indices. Its right argument will be a bit vector – the successive columns of `dg`. Its result will be a list of row indices to be used for the next iteration. We need it to stop filtering before the last indices are gone.
 Here’s `f`:
 ```q
 (til count dg){$[count i:fltr[>=]y x;x i;x]}/flip dg
@@ -113,7 +119,11 @@ But everything else being equal, I prefer the Zen monks, who accept everything a
 Instead of passing the operators as arguments, we could pass a 0 or 1 according to whether we want most-common or least-common bits.
 It might also improve legibility to separate testing the filter results from the Do iteration. 
 
-That leaves our complete solution:
+
+## Solution
+
+Download: [`day3.txt`](./data/day3.txt)
+
 ```q
 dg:"1"=read0`:day3.txt
 a[`$"3-1"]:prd 2 sv'1 not\(sum dg)>=(count dg)%2
