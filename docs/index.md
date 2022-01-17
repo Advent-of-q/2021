@@ -20,6 +20,7 @@ Feel free to chime in with comments and alternatives: what follows is unlikely t
 * [Day 1: Sonar Sweep](./01-sonarsweep.md)
 * [Day 2: Dive](./02-dive.md)
 * [Day 3: Binary Diagnostic](./03-binary-diagnostic.md)
+* [Day 4: Giant Squid](./04-giant-squid.md)
 
 
 ---
