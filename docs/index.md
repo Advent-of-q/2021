@@ -23,6 +23,7 @@ Feel free to chime in with comments and alternatives: what follows is unlikely t
 * [Day 4: Giant Squid](./04-giant-squid.md)
 * [Day 5: Hydrothermal Venture](./05-hydrothermal-venture.md)
 * [Day 6: Lanternfish](./06-lanternfish.md)
+* [Day 7: The Treachery of Whales](./07-treachery-whales.md)
 
 
 ---
