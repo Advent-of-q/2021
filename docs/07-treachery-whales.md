@@ -12,20 +12,21 @@ Download:
 [`test7.txt`](./test/test7.txt)
 
 ```txt
-1101,1,29,67,1102,0,1,65,1008,65,35,66,1005,66,28,1,67,65,20,4, ...
+16,1,2,0,4,2,7,1,2,14
 ```
-Our one-line text file has a thousand integers separated by commas. 
+Our one-line text file has integers separated by commas. 
 Still looks like a vector to q.
 ```q
-q)value each read0`:day7.txt
-1101 1 29 67 1102 0 1 65 1008 65 35 66 1005 66 28 1 67 65 20 4 0 1001 65 1 65..
+q)value each read0`:test7.txt
+16 1 2 0 4 2 7 1 2 14
 ```
 
 ## Part 1
 
 We can represent crab positions as an integer vector.
 ```q
-cp:16 1 2 0 4 2 7 1 2 14  / crab positions
+q)show cp:value each read0`:test7.txt
+16 1 2 0 4 2 7 1 2 14  / crab positions
 ```
 The distance from `cp` to any position `x` is simply `abs cp-x`.
 A naive solution calculates the fuel cost to all possible destinations.
@@ -142,6 +143,7 @@ Note here the use of an important q principle: functions, lists and dictionaries
 
 ## Solution
 
+Download:
 [`day7.txt`](./data/day7.txt)
 
 ```q
