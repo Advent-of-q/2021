@@ -2,15 +2,17 @@
 
 Today’s problem is all about mappings.
 That’s encouraging, because q is all about mappings.
+A list maps its indexes to its items.
+A dictionary maps its keys to its values.
 A function is a mapping from its argument domain/s to its range – all its possible results. 
 ```q
-q)sqrf:{x*x}  / squares: function
+q)sqrf:{x*x}                           / squares: function
 q)sqrf 4 9 3
 16 81 9
-q)sqrl:0 1 4 16 25 36 49 64 81  / squares: list
+q)sqrl:0 1 4 16 25 36 49 64 81         / squares: list
 q)sqrl 4 9 3
 16 81 9
-q)sqrd:12 9 0 5 4 3!144 81 0 25 16 9  / squares: dictionary
+q)sqrd:12 9 0 5 4 3!144 81 0 25 16 9   / squares: dictionary
 q)sqrd 4 9 3
 16 81 9
 ```
@@ -44,7 +46,7 @@ The signal wires are
 sw:"abcdefg"  / signal wires
 ``` 
 but the submarine permutes them, for example signalling `"bg"` instead of `"cf"`.
-We can represent this permutation as indexes into `sw`, that is permutations of `til 7`.
+We can represent this permutation as indexes into `sw`; that is, permutations of `til 7`.
 The canonical (unpermuted) mapping is thus `0 1 2 3 4 5 6`.
 
 
@@ -53,24 +55,23 @@ The canonical (unpermuted) mapping is thus `0 1 2 3 4 5 6`.
 Download: 
 [`test8.txt`](./test/test8.txt)
 
-Read the text file as a CSV with two columns, then partition each column on the spaces. 
+Read the text file as a CSV with two columns partitioned on the stile, then partition each column on its spaces. 
 ```q
-q)show notes:flip`sample`signal!" "vs''trim each("**";"|")0:read`:day8.txt
+q)show notes:flip`sample`display!" "vs''trim each("**";"|")0:read`:day8.txt
 q)notes
-sample                                                                                            signal
+sample                                                                                            display
 -----------------------------------------------------------------------------------------------------------------------------------------
 "be"      "cfbegad" "cbdgef"  "fgaecd"  "cgeb"    "fdcge"   "agebfd" "fecdb"  "fabcd"   "edb"     "fdgacbe" "cefdb"   "cefbgd"  "gcbe"
 "edbfga"  "begcd"   "cbg"     "gc"      "gcadebf" "fbgde"   "acbgfd" "abcde"  "gfcbed"  "gfec"    "fcgedb"  "cgb"     "dgebacf" "gc"
 "fgaebd"  "cg"      "bdaec"   "gdafb"   "agbcfd"  "gdcbef"  "bgcad"  "gfac"   "gcb"     "cdgabef" "cg"      "cg"      "fdcagb"  "cbg"
 "fbegcd"  "cbd"     "adcefb"  "dageb"   "afcb"    "bc"      "aefdc"  "ecdab"  "fgdeca"  "fcdbega" "efabcd"  "cedba"   "gadfec"  "cb"
-
 ..
 ```
-
+Notice that scalar extension allows `vs` to be iterated as `" "vs''`.
 
 ## Part 1
 
-The unmistakeable numbers each use a unique number of segments, so we can spot them easily. 
+The unmistakeable numbers are each signalled with a unique number of segments, so we can spot them easily. 
 ```q
 q)show un:{lc!x?lc:where 1=ce group x} ce cs  / unmistakeable numbers: count | #
 2| 1
@@ -78,9 +79,9 @@ q)show un:{lc!x?lc:where 1=ce group x} ce cs  / unmistakeable numbers: count | #
 3| 7
 7| 8
 ```
-It remains only to count the signals with `key un` signal wires.
+It remains only to count the display strings with `key un` signal wires.
 ```q
-q)sum in[;key un]raze(count'')notes`signal
+q)sum in[;key un] raze(count'')notes`display
 26i
 ```
 
@@ -90,7 +91,7 @@ Each note contains ten sample strings corresponding to the segments signalled fo
 It also contains four display strings.
 When we can map the ten sample strings to the numbers 0-9, we can interpret the display strings. 
 
-Four of the ten numbers can be mapped immediately to the unmistakeable numbers. 
+Four of the ten sample strings can be mapped immediately to the unmistakeable numbers because of their lengths. 
 ```q
 q)show as:1 4 7!(cs 1 4 7)(;)'x[`sample].[?](count'')(x`sample;cs 1 4 7)
 1| "cf"   "be"
@@ -100,6 +101,8 @@ q)show as:1 4 7!(cs 1 4 7)(;)'x[`sample].[?](count'')(x`sample;cs 1 4 7)
 Above we see how the canonical segments `("cf";"bcdf";"acf")` for the unmistakeable numbers 1 4 7 are permuted to `("be";"cgeb";"edb")`. 
 But the order of the segments in each string does not matter: `"be"` could map to either `"cf"` or `"fc"`. 
 The information in `as` does not give us the mapping – but it does restrict the search space. 
+
+8 is also an unmistakeable number, but because all the segments are used to signal it, it tells us nothing about how the wires and segments are permuted.
 
 By comparing the mappings for 1 and 7 we see that `"a"` maps to `"d"`.
 Similarly from 1 and 7 we see `"bd"` maps to `"cg"`.
@@ -139,10 +142,9 @@ q)(1 7#0W)cp/dm
 ```
 If `cp` finds its right argument maps one index to another, it inserts that mapping into the list.
 Otherwise the right argument will be two pairs of indexes. 
-(This is not the general case, but it is so for this problem.)
-The Zen monks `1 reverse\` provide both versions of the pair.
+The [Zen monks](https://community.kx.com/t5/Blogs/Meet-the-Zen-monks/ba-p/11604) `1 reverse\` provide both versions of the pair.
 
-Two index positions remain unmapped, so we can use `cp` to complete the permutation list.
+Two index positions above remain unmapped, so we can use `cp` to complete the permutation list.
 But we’ll use nulls instead of infinities as placeholders, so `null` finds them.
 ```q
 q)pl:(1 7#0N)cp/dm  / permutations given by unmistakeable numbers
@@ -183,7 +185,7 @@ q)(asc each `$(asc'')sw pl@\:sw?/:cs) ? asc `$asc each x`sample
 
 ### A higher-order function
 
-We notice above the business of sorting strings, converting to symbols and sorting the symbol vectors is done to both arguments of Find, the only real difference being that it’s iterated over the items of the left argument. 
+We notice above that the business of sorting strings, converting to symbols and sorting the symbol vectors is done to both arguments of [Find](https://code.kx.com/q/ref/find/ "Reference") `?`, the only real difference being that it’s iterated over the items of the left argument. 
 Could we write this more clearly?
 
 One way would be to encapsulate the business in a lambda.
@@ -198,7 +200,7 @@ q)el:{(x'[y];x@z)}  / each on the left
 q).[?] el[asc]. `$ el[asc']. (sw pl@\:sw?/:cs;x`sample)
 2
 ```
-Above we rely on atomic iteration in Cast to recurse all the way down to strings. 
+Atomic iteration in [Cast](https://code.kx.com/q/ref/cast/ "Reference") `$` recurses all the way down to strings. 
 ```q
 q)show p:pl .[?] el[asc]. `$ el[asc']. (sw pl@\:sw?/:cs;x`sample)
 3 6 1 2 0 4 5
